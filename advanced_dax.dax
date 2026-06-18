@@ -1,0 +1,8 @@
+VAR CurrentUser = USERPRINCIPALNAME()
+VAR ManagerKey =
+    CALCULATE(
+        SELECTEDVALUE(dim_employee[EmployeeKey]),
+        dim_employee[EmployeeEmail] = CurrentUser
+    )
+RETURN
+    PATHCONTAINS(dim_employee[ParentPath], ManagerKey)
